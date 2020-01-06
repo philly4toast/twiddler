@@ -4,24 +4,41 @@
     <script src="jquery.js"></script>
     <script src="data_generator.js"></script>
   </head>
-  <body>
-    <script>
 
+  <body>
+
+  <div class="tweetFeed">
+    <section class="mainBody">
+  </div>
+
+    <script>
       $(document).ready(function(){
-        var $body = $('body');
-        $body.html('');
+        var $body = $('.mainBody');
+        // $body.html('');
+        // <!-- button to refresh the page maybe not needed -->
+        $body.html('<a href="./index.html"><button>Refresh page for fresh tweets</button></a>');
 
         var index = streams.home.length - 1;
         while(index >= 0){
           var tweet = streams.home[index];
-          var $tweet = $('<div></div>');
-          $tweet.text('@' + tweet.user + ': ' + tweet.message);
-          $tweet.appendTo($body);
-          index -= 1;
-        }
 
+          var $tweet = $('<div class=tweet></div>');
+          var $user = $('<p class=user></p>');
+          var $message = $('<p class=message></p>');
+
+   
+
+          $tweet.text('@' + tweet.user + ': ' + tweet.created_at + ' ' + tweet.message);
+       $tweet.appendTo('.mainBody');
+          
+          index -= 1;
+
+        }
+        $body.css("font-family", "Helvetica");
+        $body.css("background-color", "#00acee")
       });
 
     </script>
+
   </body>
 </html>
